@@ -976,8 +976,11 @@ using OfficeOpenXml.FormulaParsing.Excel.Functions.RefAndLookup;
                                         {
                                             var fr = shift ? fromRow : endRow - rowsLeft;
                                             pagePos = column.GetPosition(fr);
-                                            delEndRow = DeleteCells(column._pages[pagePos], fr, shift ? fr + rowsLeft : endRow, shift);
-                                            if (shift) UpdatePageOffset(column, pagePos, rowsLeft);
+                                            if (pagePos >= 0)
+                                            {
+                                              delEndRow = DeleteCells(column._pages[pagePos], fr, shift ? fr + rowsLeft : endRow, shift);
+                                              if (shift) UpdatePageOffset(column, pagePos, rowsLeft);
+                                            }
                                         }
                                     }
                                 }
